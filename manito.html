@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <title>Hello, 마니또!</title>
+  </head>
+  <body>
+    <div class="container mt-4">
+      <input id="nameInput" type="text" autofocus onkeydown="onKeydown(event)">
+      <button type="button" class="btn btn-primary" onclick="addPerson()">추가</button>
+      <button type="button" class="btn btn-primary" onclick="displayResult()">추첨</button>
+
+      <ul id="people" class="list-group mt-3">
+      </ul>
+
+      <hr>
+
+      <ul id="result" class="list-group mt-3">
+        
+      </ul>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+      let people = [];
+      let end = false;
+
+      function getRandom(min, max) {
+        return Math.floor(Math.random() * (max - min) ) + min;
+      }
+
+      function displayPeople() {
+        const peopleDoc = document.querySelector('#people');
+
+        let innerHtml = '';
+        for(const person of people) {
+          innerHtml += `<li class='list-group-item'>${person}</li>`;
+        }
+
+        peopleDoc.innerHTML = innerHtml;
+      }
+
+      function displayResult() {
+        if(end || people.length < 2)
+          return;
+
+        let innerHtml = '';
+        let checked = new Array(people.length).fill(false);
+        let whileCount = 0;
+
+        for(let i=0; i<people.length; i++) {
+          let ok = false;
+          for(let j=0; j<people.length; j++) {
+            if(i !== j && checked[j] === false) {
+              ok = true;
+              break;
+            }              
+          }
+
+          if(!ok) {
+            // alert('마니또 추출 실패 ㅠㅠ 다시 시도해주세요 !');
+            displayResult();
+            return;
+          }
+
+          let targetIndex;
+          while(true) {
+            targetIndex = getRandom(0, people.length);
+            console.log(`i:${i} targetIndex:${targetIndex}`);
+            if(targetIndex !== i && !checked[targetIndex]) {
+              checked[targetIndex] = true;
+              break;
+            }
+          }
+          
+          innerHtml += `<li class='list-group-item'>${people[i]} -> ${people[targetIndex]}</li>`;              
+        }
+
+        document.querySelector('#result').innerHTML = innerHtml;
+        end = true;
+      }
+
+      function addPerson() {
+        const name = document.querySelector('#nameInput');
+        if(!name.value)
+          return;
+
+        people.push(name.value);
+        name.value = '';
+
+        displayPeople();
+      }
+
+      function onKeydown(e) {
+        if (e.keyCode === 13) {
+          addPerson();        
+          
+        }
+      }
+
+      displayPeople();
+      
+    </script>
+  </body>
+</html>
