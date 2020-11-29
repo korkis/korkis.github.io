@@ -187,7 +187,7 @@
         </footer>
         <!-- Copyright Section-->
         <div class="copyright py-4 text-center text-white">
-            <div class="container"><small>Copyright © ISU 2020</small></div>
+            <div class="container"><small id="copyright">Copyright © ISU 2020</small></div>
         </div>
         <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
         <div class="scroll-to-top d-lg-none position-fixed">
@@ -424,5 +424,8 @@
         <script src="assets/mail/contact_me.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        <script>
+            document.getElementById('copyright').innerHTML = `Copyright © ISU ${new Date().getFullYear()}`
+        </script>
     </body>
 </html>
