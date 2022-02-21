@@ -9,10 +9,9 @@
   <body>
     <div class="container mt-4">
       <input id="shortUrl" type="text" autofocus oninput="onKeydown(event)" style="width:300px;" placeholder="Short Url">
-      <!-- <button type="button" class="btn btn-primary" onclick="changeUrl()">변환</button> -->
       <hr>
       <input id="fullUrl" type="text" readonly style="width:300px;" placeholder="Full Url">
-      
+      <button type="button" class="btn btn-primary" onclick="copyToClipboard()">복사</button>      
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -35,6 +34,18 @@
         const lastPath = url.substr(url.lastIndexOf('/') + 1);
         const id = lastPath.substr(0, lastPath.indexOf('?'));
         document.getElementById('fullUrl').value = `https://youtu.be/${id}`;
+      }
+
+      function copyToClipboard() {
+        /* Get the text field */
+        const copyText = document.getElementById("fullUrl");
+
+        /* Select the text field */
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+        /* Copy the text inside the text field */
+        navigator.clipboard.writeText(copyText.value);
       }
     </script>
   </body>
