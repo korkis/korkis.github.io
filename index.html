@@ -37,15 +37,16 @@
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
         type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
         aria-expanded="false" aria-label="Toggle navigation">
-        Menu
+        <span id="Menu">Menu</span>
         <i class="fas fa-bars"></i>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-              href="#portfolio">Service</a></li>
-          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-              href="#about">About</a></li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio" id="Service">Service</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about" id="About">About</a></li>
           <!-- <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Contact</a></li> -->
         </ul>
       </div>
@@ -57,7 +58,7 @@
       <!-- Masthead Avatar Image-->
       <img class="masthead-avatar mb-5 rounded-circle" src="assets/img/isu.png" alt="" />
       <!-- Masthead Heading-->
-      <h1 class="masthead-heading text-uppercase mb-0">Useful and Funny Apps</h1>
+      <h1 class="masthead-heading text-uppercase mb-0" id="usefulAndFunnyApps">Useful and Funny Apps</h1>
       <!-- Icon Divider-->
       <div class="divider-custom divider-light">
         <div class="divider-custom-line"></div>
@@ -65,14 +66,14 @@
         <div class="divider-custom-line"></div>
       </div>
       <!-- Masthead Subheading-->
-      <p class="masthead-subheading font-weight-light mb-0">Enjoy life with funny apps!</p>
+      <p id="enjoyLifeWithFunnyApps" class="masthead-subheading font-weight-light mb-0">Enjoy life with funny apps!</p>
     </div>
   </header>
   <!-- Portfolio Section-->
   <section class="page-section portfolio" id="portfolio">
     <div class="container">
       <!-- Portfolio Section Heading-->
-      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Service</h2>
+      <h2 id="SERVICE" class="page-section-heading text-center text-uppercase text-secondary mb-0">Service</h2>
       <!-- Icon Divider-->
       <div class="divider-custom">
         <div class="divider-custom-line"></div>
@@ -150,7 +151,7 @@
   <section class="page-section bg-primary text-white mb-0" id="about">
     <div class="container">
       <!-- About Section Heading-->
-      <h2 class="page-section-heading text-center text-uppercase text-white">About</h2>
+      <h2 id="AboutTitle" class="page-section-heading text-center text-uppercase text-white">About</h2>
       <!-- Icon Divider-->
       <div class="divider-custom divider-light">
         <div class="divider-custom-line"></div>
@@ -160,13 +161,13 @@
       <!-- About Section Content-->
       <div class="row">
         <div class="col-lg-4 ml-auto">
-          <p class="lead">
+          <p id="aboutDescription1" class="lead">
             ISU uses Java to create web service that are useful to users, and uses Flutter to provide funny and useful
             apps for Android and iOS.
           </p>
         </div>
         <div class="col-lg-4 mr-auto">
-          <p class="lead">
+          <p id="aboutDescription2" class="lead">
             The best security is guaranteed by server configuration using Google Cloud Platform and Firebase.
           </p>
         </div>
@@ -187,7 +188,7 @@
       <div class="row">
         <!-- Footer Location-->
         <div class="col-lg-4 mb-5 mb-lg-0">
-          <h4 class="text-uppercase mb-4">Contact</h4>
+          <h4 id="Contact" class="text-uppercase mb-4">Contact</h4>
           <p class="lead mb-0">
             playkorkis@gmail.com
             <br />
@@ -196,7 +197,7 @@
         </div>
         <!-- Footer Social Icons-->
         <div class="col-lg-4 mb-5 mb-lg-0">
-          <h4 class="text-uppercase mb-4">Around the Web</h4>
+          <h4 id="AroundTheWeb" class="text-uppercase mb-4">Around the Web</h4>
           <!-- <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a> -->
           <a class="btn btn-outline-light btn-social mx-1" href="https://twitter.com/gazuacup" target="_blank"><i
               class="fab fa-fw fa-twitter"></i></a>
@@ -206,12 +207,15 @@
         </div>
         <!-- Footer About Text-->
         <div class="col-lg-4">
-          <h4 class="text-uppercase mb-4">About Isu</h4>
+          <h4 id="ABOUTISU" class="text-uppercase mb-4">About Isu</h4>
           <p class="lead mb-0">
-            ISU is making useful and funny apps. You can find out what's new on the
-            <a href="https://blog.naver.com/cjkis" target="_blank">blog</a>
-            .
-          </p>
+            <span id="aboutIsuDescription">ISU is making useful and funny apps. You can find out what's new on the blog.</span>
+          </p>          
+
+          <select id="langSelect" class="form-select mt-3" aria-label="Default select example" onchange="onLanguageChanged(this)">
+            <option selected value="en">English</option>
+            <option value="ko">한국어</option>
+          </select>
         </div>
       </div>
     </div>
@@ -250,7 +254,7 @@
                 <!-- Portfolio Modal - Image-->
                 <img class="img-fluid rounded mb-5" src="assets/img/portfolio/honeychat.png" alt="" />
                 <!-- Portfolio Modal - Text-->
-                <p class="mb-3">
+                <p id="portfolioModal1Description" class="mb-3">
                   Find and talk to people who meets your conditions
                 </p>
 
@@ -269,7 +273,7 @@
 
                 <button class="btn btn-primary" data-dismiss="modal">
                   <i class="fas fa-times fa-fw"></i>
-                  Close Window
+                  <span id="portfolioModal1Close">Close Window</span>
                 </button>
               </div>
             </div>
@@ -306,14 +310,14 @@
                   <img class="img-fluid rounded mb-5" src="assets/img/portfolio/gazuacup.png" alt="" />
                 </a>
                 <!-- Portfolio Modal - Text-->
-                <p class="mb-5">
+                <p id="portfolioModal2Description" class="mb-5">
                   You can play the traditional Korean game Panchigi online web game by charging cryptocurrency Ripple.
                   You can create an Ripple address, deposit, and play the game with the charged money. For a healthy
                   game, withdrawal is impossible.
                 </p>
                 <button class="btn btn-primary" data-dismiss="modal">
                   <i class="fas fa-times fa-fw"></i>
-                  Close Window
+                  <span id="portfolioModal2Close">Close Window</span>
                 </button>
               </div>
             </div>
@@ -350,13 +354,13 @@
                   <img class="img-fluid rounded mb-5" src="assets/img/portfolio/recorder.png" alt="" />
                 </a>
                 <!-- Portfolio Modal - Text-->
-                <p class="mb-5">This is an Android app that allows reservation recording. Scheduled recording is usually
+                <p id="portfolioModal3Description" class="mb-5">This is an Android app that allows reservation recording. Scheduled recording is usually
                   recorded for a long time, so it is recorded in low quality to reduce capacity. However, the
                   cost-effectiveness ratio of sound quality and capacity has been increased to maximize sound quality.
                   Supports Korean, English and Japanese.</p>
                 <button class="btn btn-primary" data-dismiss="modal">
                   <i class="fas fa-times fa-fw"></i>
-                  Close Window
+                  <span id="portfolioModal3Close">Close Window</span>
                 </button>
               </div>
             </div>
@@ -390,7 +394,7 @@
                 <img class="img-fluid rounded mb-5" src="assets/img/portfolio/upbitpremium.png" alt="" />
 
                 <!-- Portfolio Modal - Text-->
-                <p class="mb-3">This is an Android and iOS app that shows the difference in the price of the upbit
+                <p id="portfolioModal4Description" class="mb-3">This is an Android and iOS app that shows the difference in the price of the upbit
                   cryptocurrency won and the USDT market. Compare cryptocurrency prices using today's dollars and won.
                   The two with the most difference are marked in red and blue.</p>
 
@@ -410,7 +414,7 @@
 
                 <button class="btn btn-primary" data-dismiss="modal">
                   <i class="fas fa-times fa-fw"></i>
-                  Close Window
+                  <span id="portfolioModal4Close">Close Window</span>
                 </button>
               </div>
             </div>
@@ -540,8 +544,61 @@
   <script src="assets/mail/contact_me.js"></script>
   <!-- Core theme JS-->
   <script src="js/scripts.js"></script>
+  <script src="https://unpkg.com/i18next/dist/umd/i18next.min.js"></script>
+  <script src="https://unpkg.com/i18next-browser-languagedetector/dist/umd/i18nextBrowserLanguageDetector.min.js"></script>
+  <script src="js/lang.js"></script>
   <script>
     document.getElementById('copyright').innerHTML = `Copyright © ISU ${new Date().getFullYear()}`
+
+    function displayText() {
+      document.getElementById('Menu').innerHTML = i18next.t('Menu');
+      document.getElementById('Service').innerHTML = i18next.t('Service');
+      document.getElementById('SERVICE').innerHTML = i18next.t('SERVICE');
+      document.getElementById('usefulAndFunnyApps').innerHTML = i18next.t('usefulAndFunnyApps');
+      document.getElementById('About').innerHTML = i18next.t('About');
+      document.getElementById('enjoyLifeWithFunnyApps').innerHTML = i18next.t('enjoyLifeWithFunnyApps');
+      document.getElementById('portfolioModal1Label').innerHTML = i18next.t('portfolioModal1Label');
+      document.getElementById('portfolioModal1Description').innerHTML = i18next.t('portfolioModal1Description');
+      document.getElementById('portfolioModal1Close').innerHTML = i18next.t('portfolioModal1Close');
+      document.getElementById('portfolioModal2Label').innerHTML = i18next.t('portfolioModal2Label');
+      document.getElementById('portfolioModal2Description').innerHTML = i18next.t('portfolioModal2Description');
+      document.getElementById('portfolioModal2Close').innerHTML = i18next.t('portfolioModal2Close');
+      document.getElementById('portfolioModal3Label').innerHTML = i18next.t('portfolioModal3Label');
+      document.getElementById('portfolioModal3Description').innerHTML = i18next.t('portfolioModal3Description');
+      document.getElementById('portfolioModal3Close').innerHTML = i18next.t('portfolioModal3Close');
+      document.getElementById('portfolioModal4Label').innerHTML = i18next.t('portfolioModal4Label');
+      document.getElementById('portfolioModal4Description').innerHTML = i18next.t('portfolioModal4Description');
+      document.getElementById('portfolioModal4Close').innerHTML = i18next.t('portfolioModal4Close');
+      document.getElementById('AboutTitle').innerHTML = i18next.t('AboutTitle');
+      document.getElementById('aboutDescription1').innerHTML = i18next.t('aboutDescription1');
+      document.getElementById('aboutDescription2').innerHTML = i18next.t('aboutDescription2');
+      document.getElementById('Contact').innerHTML = i18next.t('Contact');
+      document.getElementById('AroundTheWeb').innerHTML = i18next.t('AroundTheWeb');
+      document.getElementById('ABOUTISU').innerHTML = i18next.t('ABOUTISU');
+
+      const blogLink = `<a href="https://blog.naver.com/cjkis" target="_blank">${i18next.t('blog')}</a>`;
+      document.getElementById('aboutIsuDescription').innerHTML = i18next.t('aboutIsuDescription', { blogLink, interpolation: { escapeValue: false } });
+      // document.getElementById('aboutIsuDescription').innerHTML = '<button>hi</button>'
+      // document.getElementById('blog').innerHTML = i18next.t('blog');
+    }
+
+
+    displayText();
+
+    function onLanguageChanged(selectObject) {
+      // console.log('onLanguageChanged', selectObject.value);
+      // changeLanguage(selectObject.value);
+
+      i18next.changeLanguage(selectObject.value, (err, t) => {
+        if (err) {
+          return console.erorr('something went wrong loading', err);
+        }
+
+        displayText();
+      });
+    }
+
+    document.getElementById('langSelect').value = i18next.language;
 
     // window.addEventListener('load', (event) => {
     //   $('#notice').modal('toggle')
