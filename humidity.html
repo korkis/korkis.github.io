@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<title>습도 변환 계산기</title>
+<style>
+  body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; text-align: center; margin-top: 60px; }
+  .row { margin: 8px 0; }
+  input { width: 90px; padding: 6px; margin-left: 6px; text-align: right; }
+  .unit { margin-left: 4px; }
+  .result { margin-top: 16px; font-weight: 700; font-size: 1.15rem; color: #333; }
+  .hint { font-size: .9rem; color: #666; margin-top: 8px; }
+</style>
+</head>
+<body>
+  <h2>🌤 습도 변환 계산기</h2>
+
+  <div class="row">
+    <label>실외 온도
+      <input type="number" id="t1" value="10" step="0.1" />
+      <span class="unit">°C</span>
+    </label>
+  </div>
+
+  <div class="row">
+    <label>실외 습도
+      <input type="number" id="rh" value="75" step="0.1" min="0" max="100" />
+      <span class="unit">%</span>
+    </label>
+  </div>
+
+  <div class="row">
+    <label>실내 온도
+      <input type="number" id="t2" value="23" step="0.1" />
+      <span class="unit">°C</span>
+    </label>
+  </div>
+
+  <!-- 버튼은 없앴어! 자동이니까 필요없지롱 ✨ -->
+
+  <div id="res" class="result"></div>
+  <!-- <div class="hint">* 간단 근사식: RH₂ ≈ RH × exp( 17.27 × (T₁ − T₂) / (237.7 + T₂) )</div> -->
+
+<script>
+(function () {
+  const t1 = document.getElementById('t1');
+  const rh = document.getElementById('rh');
+  const t2 = document.getElementById('t2');
+  const res = document.getElementById('res');
+
+  function clampRh(x) {
+    // 0~100% 범위로 살짝 다듬어 줘요!
+    if (Number.isNaN(x)) return 0;
+    if (x < 0) return 0;
+    if (x > 100) return 100;
+    return x;
+  }
+
+  function calc() {
+    const T1 = parseFloat(t1.value);
+    const RH = clampRh(parseFloat(rh.value));
+    const T2 = parseFloat(t2.value);
+
+    // 입력란과 동기화(사용자가 120% 같은 값 넣었을 때 예쁘게 정리)
+    if (rh.value !== RH.toString()) rh.value = RH;
+
+    // 근사식 적용
+    const exponent = 17.27 * (T1 - T2) / (237.7 + T2);
+    const RH2 = RH * Math.exp(exponent);
+
+    const out = (Number.isFinite(RH2)) ? RH2 : 0;
+    res.textContent = `💧 ${T1.toFixed(1)}°C · ${RH.toFixed(1)}% 공기는
+${T2.toFixed(1)}°C에서 약 ${out.toFixed(1)}% 습도와 같아요!`;
+  }
+
+  // 숫자 변경될 때마다 자동 계산
+  t1.addEventListener('input', calc);
+  rh.addEventListener('input', calc);
+  t2.addEventListener('input', calc);
+
+  // 첫 로드시에도 자동 계산
+  document.addEventListener('DOMContentLoaded', calc);
+
+  // 혹시 스크립트가 DOM 뒤에 오지 않았다면 즉시 한 번 호출!
+  calc();
+})();
+</script>
+</body>
+</html>
